@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+    <form action="/students/update" method="post">
+      <div class="form-group">
+          <label for="name">번호</label>
+          <input type="text" id="id" name="id" placeholder="번호를 입력하세요">
+
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+
+            <label for="major">전공</label>
+            <input type="text" id="major" name="major" placeholder="전공을 입력하세요">
+
+            <label for="grade">학년</label>
+            <input type="number" min="1" max="5" id="grade" name="grade" placeholder="학년을 입력하세요">
+      </div>
+      <button type="submit">업데이트</button>
+    </form>
+</body>
+</html>
