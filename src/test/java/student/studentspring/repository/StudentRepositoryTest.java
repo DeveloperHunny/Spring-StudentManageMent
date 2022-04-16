@@ -29,7 +29,7 @@ public class StudentRepositoryTest {
         student.setGrade(3);
 
         repository.save(student);
-        Student result = repository.findByName(student.getName()).get();
+        Student result = repository.findByNameAndMajorAndGrade(student).get();
         assertThat(student).isEqualTo(result);
     }
 
@@ -77,24 +77,19 @@ public class StudentRepositoryTest {
         Optional<Student> result = repository.findByNameAndMajorAndGrade(student);
 
         assertThat(result.get()).isEqualTo(student);
-
-
     }
 
-
     @Test
-    public void deleteById(){
+    public void delete(){
         Student student = new Student();
         student.setName("June");
         student.setMajor("Computer");
         student.setGrade(3);
+        repository.save(student);
 
-        Student result = repository.save(student);
-        if(repository.deleteById(result.getId())){
-            assertThat(repository.findById(result.getId()).isPresent()).isEqualTo(false);
-        };
+        boolean result = repository.delete(student);
 
-
+        assertThat(result).isEqualTo(true);
     }
 
 

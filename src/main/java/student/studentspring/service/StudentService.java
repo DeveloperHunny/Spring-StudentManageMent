@@ -36,10 +36,10 @@ public class StudentService {
         if(!studentRepository.delete(student)){
             throw new IllegalStateException("존재하지 않는 학생입니다.");
         }
+
     }
 
     public void updateStudent(Student student){
-
         if(!studentRepository.update(student)){
             throw new IllegalStateException("존재하지 않는 학생입니다.");
         }

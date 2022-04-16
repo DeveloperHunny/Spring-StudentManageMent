@@ -21,43 +21,6 @@ public class MemoryStudentRepository implements StudentRepository{
         return Optional.ofNullable(store.get(id));
     }
 
-    public Optional<Student> findByName(String name) {
-        return store.values().stream()
-                .filter(student -> student.getName().equals(name))
-                .findAny();
-    }
-
-    @Override
-    public List<Student> findAll() {
-        return new ArrayList<>(store.values());
-    }
-
-    @Override
-    public boolean delete(Student student) {
-        Optional<Student> result = findByNameAndMajorAndGrade(student);
-        if(result.isPresent()){
-            store.remove(result.get().getId());
-            return true;
-        }
-        else{
-           return false;
-        }
-    }
-
-    @Override
-    public boolean deleteById(Long id) {
-        store.remove(id);
-        return true;
-    }
-
-    @Override
-    public boolean update(Student student) {
-        Student result = store.replace(student.getId(), student);
-
-        if(result == null){return false;}
-        else{ return true; }
-    }
-
     @Override
     public Optional<Student> findByNameAndMajorAndGrade(Student student) {
         String name = student.getName();
@@ -66,6 +29,31 @@ public class MemoryStudentRepository implements StudentRepository{
         return store.values().stream()
                 .filter(s -> s.getName().equals(name) && s.getGrade() == grade && s.getMajor().equals(major))
                 .findAny();
+    }
+
+    @Override
+    public List<Student> findAll() {
+        return new ArrayList<>(store.values());
+    }
+
+
+
+    @Override
+    public boolean delete(Student student) {
+        Optional<Student> findObject = findByNameAndMajorAndGrade(student);
+        if(findObject.isEmpty()){ return false;}
+
+        store.remove(findObject.get().getId());
+        return true;
+    }
+
+
+    @Override
+    public boolean update(Student student) {
+        Student result = store.replace(student.getId(), student);
+
+        if(result == null){return false;}
+        else{ return true; }
     }
 
 
