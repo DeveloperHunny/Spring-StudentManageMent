@@ -91,7 +91,6 @@ public class StudentServiceIntegrationTest {
 
         //then
         assertThat(result.size()).isEqualTo(0);
-
     }
 
     @Test

@@ -1,11 +1,13 @@
 package student.studentspring.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import student.studentspring.domain.Student;
 import student.studentspring.repository.StudentRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class StudentService {
 
     private StudentRepository studentRepository;
